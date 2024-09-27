@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { FaGithub, FaLinkedin, FaHandshake } from "react-icons/fa";
+import { FaGithub, FaLinkedin, FaHandshake, FaInstagram } from "react-icons/fa";
 
 interface SocialsProps {
   ContainerStyles: string;
@@ -12,6 +12,10 @@ const socials = [
   {
     icon: <FaHandshake />,
     path: "https://app.joinhandshake.com/profiles/42306469",
+  },
+  {
+    icon: <FaInstagram />,
+    path: "https://www.instagram.com/wesley.c_c",
   },
 ];
 

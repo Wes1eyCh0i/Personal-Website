@@ -42,7 +42,7 @@ const Photo = () => {
           <motion.circle
             cx="256"
             cy="256"
-            r="256"
+            r="252"
             stroke="#00ccff"
             strokeWidth="4"
             strokeLinecap="round"
@@ -53,7 +53,7 @@ const Photo = () => {
               rotate: [120, 360],
             }}
             transition={{
-              duration: 20,
+              duration: 10,
               repeat: Infinity,
               repeatType: "reverse",
             }}
