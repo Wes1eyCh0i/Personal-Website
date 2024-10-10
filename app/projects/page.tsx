@@ -16,6 +16,7 @@ import {
 import Link from "next/link";
 import Image from "next/image";
 import WorkSliderButtons from "@/components/WorkSliderButtons";
+import { Swiper as SwiperType } from "swiper";
 
 const projects = [
   {
@@ -53,7 +54,7 @@ const projects = [
 export default function Work() {
   const [project, setProject] = useState(projects[0]);
 
-  const handleSlideChange = (swiper) => {
+  const handleSlideChange = (swiper: SwiperType) => {
     const currentIndex = swiper.activeIndex;
 
     setProject(projects[currentIndex]);
