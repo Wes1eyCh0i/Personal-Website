@@ -20,24 +20,33 @@ import WorkSliderButtons from "@/components/WorkSliderButtons";
 const projects = [
   {
     num: "01",
-    category: "Frontend",
-    title: "project 1",
-    description:
-      "asdsadasdasd ashdashdiuas ashdiahjd iuasduiasdhiuhuiauhh uhs iuahsciuhcashuid",
-    stack: [{ name: "A" }, { name: "B" }],
-    image: "/assets/photo.PNG",
+    category: "FullStack Project",
+    title: "ACT Law Firm",
+    description: "A responsive landing page with visually appealing animations",
+    stack: [{ name: "Next.js" }, { name: "Framer Motion" }, { name: "SEO" }],
+    image: "/assets/project1.png",
     live: "",
     github: "",
   },
   {
     num: "02",
-    category: "Frontend",
-    title: "project 22",
-    description: "asdsadasdasd",
-    stack: [{ name: "A" }, { name: "B" }],
+    category: "FullStack Project",
+    title: "Let’s Cover! Web App",
+    description: "Sportify playlists generator",
+    stack: [{ name: "React" }, { name: "Node.js" }, { name: "MongoDB" }],
     image: "/assets/photo.PNG",
     live: "",
-    github: "",
+    github: "https://github.com/sharkbyte79/CS411-Full-Stack",
+  },
+  {
+    num: "03",
+    category: "Security Project",
+    title: "Log4j Scanner",
+    description: "Log4Shell vulnerability scanner for web applications",
+    stack: [{ name: "Java" }, { name: "Python" }],
+    image: "/assets/project3.png",
+    live: "https://drive.google.com/file/d/1KKaaTeLit_1FKD9gz_oQ0g7CNq5Rgjz8/view",
+    github: "https://github.com/sharkbyte79/CS411-Full-Stack",
   },
 ];
 
@@ -55,7 +64,7 @@ export default function Work() {
       initial={{ opacity: 0 }}
       animate={{
         opacity: 1,
-        transition: { delat: 2.4, duration: 0.4, ease: "easeIn" },
+        transition: { delay: 2.4, duration: 0.4, ease: "easeIn" },
       }}
       className="min-h-[80vh] flex flex-col justify-center py-12 xl:px-0"
     >
@@ -82,30 +91,34 @@ export default function Work() {
               </ul>
               <div className="border border-white/20"></div>
               <div className="flex items-center gap-4">
-                <Link href={project.live}>
-                  <TooltipProvider delayDuration={100}>
-                    <Tooltip>
-                      <TooltipTrigger className="w-20 h-20 rounded-full bg-white/5 flex justify-center items-center group">
-                        <BsArrowUpRight className="text-white text-3xl group-hover:text-accent" />
-                      </TooltipTrigger>
-                      <TooltipContent>
-                        <p> Live Project </p>
-                      </TooltipContent>
-                    </Tooltip>
-                  </TooltipProvider>
-                </Link>
-                <Link href={project.github}>
-                  <TooltipProvider delayDuration={100}>
-                    <Tooltip>
-                      <TooltipTrigger className="w-20 h-20 rounded-full bg-white/5 flex justify-center items-center group">
-                        <BsGithub className="text-white text-3xl group-hover:text-accent" />
-                      </TooltipTrigger>
-                      <TooltipContent>
-                        <p> Github Repository </p>
-                      </TooltipContent>
-                    </Tooltip>
-                  </TooltipProvider>
-                </Link>
+                {project.live && (
+                  <Link href={project.live}>
+                    <TooltipProvider delayDuration={100}>
+                      <Tooltip>
+                        <TooltipTrigger className="w-20 h-20 rounded-full bg-white/5 flex justify-center items-center group">
+                          <BsArrowUpRight className="text-white text-3xl group-hover:text-accent" />
+                        </TooltipTrigger>
+                        <TooltipContent>
+                          <p> Live Project </p>
+                        </TooltipContent>
+                      </Tooltip>
+                    </TooltipProvider>
+                  </Link>
+                )}
+                {project.github && (
+                  <Link href={project.github}>
+                    <TooltipProvider delayDuration={100}>
+                      <Tooltip>
+                        <TooltipTrigger className="w-20 h-20 rounded-full bg-white/5 flex justify-center items-center group">
+                          <BsGithub className="text-white text-3xl group-hover:text-accent" />
+                        </TooltipTrigger>
+                        <TooltipContent>
+                          <p> Github Repository </p>
+                        </TooltipContent>
+                      </Tooltip>
+                    </TooltipProvider>
+                  </Link>
+                )}
               </div>
             </div>
           </div>

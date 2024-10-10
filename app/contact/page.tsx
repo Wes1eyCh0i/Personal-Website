@@ -3,15 +3,6 @@
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import {
-  Select,
-  SelectGroup,
-  SelectValue,
-  SelectTrigger,
-  SelectContent,
-  SelectLabel,
-  SelectItem,
-} from "@/components/ui/select";
 
 import { FaPhoneAlt, FaEnvelope, FaMapMarkerAlt } from "react-icons/fa";
 import { motion } from "framer-motion";
@@ -25,6 +16,26 @@ const info = [
     description: "Boston, MA 02134",
   },
 ];
+
+async function handleSubmit(event: any) {
+  event.preventDefault();
+
+  const data = {
+    name: String(event.target.name.value),
+    email: String(event.target.email.value),
+    title: String(event.target.title.value),
+    message: String(event.target.message.value),
+  };
+
+  const response = await fetch("/api/contact", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(data),
+  });
+  console.log(response.json);
+}
 
 export default function Contact() {
   return (
@@ -54,7 +65,7 @@ export default function Contact() {
               {/* Textarea */}
               <Textarea className="h-48" placeholder="Type your message here" />
               {/* Button */}
-              <Button size="md" className="max-w-40">
+              <Button size="md" className="max-w-40" onSubmit={handleSubmit}>
                 Send Message
               </Button>
             </form>
