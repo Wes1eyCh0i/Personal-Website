@@ -23,7 +23,7 @@ const Photo = () => {
           className="w-[17rem] h-[17rem] xl:w-[31rem] xl:h-[31rem] mix-blend-lighten absolute"
         >
           <Image
-            src="/assets/photo.png"
+            src="/assets/photo.PNG"
             alt="Photo"
             quality={100}
             layout="fill"
