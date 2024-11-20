@@ -1,8 +1,22 @@
 "use client";
+import { formSchema } from "@/lib/schemas";
 
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from "@/components/ui/form";
+
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { z } from "zod";
+import { send } from "@/lib/email";
 
 import { FaPhoneAlt, FaEnvelope, FaMapMarkerAlt } from "react-icons/fa";
 import { motion } from "framer-motion";
@@ -17,27 +31,24 @@ const info = [
   },
 ];
 
-async function handleSubmit(event: any) {
-  event.preventDefault();
-
-  const data = {
-    name: String(event.target.name.value),
-    email: String(event.target.email.value),
-    title: String(event.target.title.value),
-    message: String(event.target.message.value),
-  };
-
-  const response = await fetch("/api/contact", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(data),
-  });
-  console.log(response.json);
-}
-
 export default function Contact() {
+  const form = useForm<z.infer<typeof formSchema>>({
+    resolver: zodResolver(formSchema),
+    defaultValues: {
+      firstName: "",
+      lastName: "",
+      email: "",
+      message: "",
+    },
+  });
+
+  // 2. Define a submit handler.
+  function onSubmit(values: z.infer<typeof formSchema>) {
+    // Do something with the form values.
+    // ✅ This will be type-safe and validated.
+    send(values);
+  }
+
   return (
     <motion.section
       initial={{ opacity: 0 }}
@@ -51,24 +62,95 @@ export default function Contact() {
         <div className="flex flex-col xl:flex-row gap-8">
           {/* Form */}
           <div className="xl:w-3/5 order-2 xl:order-none">
-            <form className="flex flex-col gap-6 p-10 bg-slate-800 rounded-xl">
-              <h3 className="text-4xl text-accent">Let's have a chat</h3>
-              <p className="text-white/80">
-                Reach out to me through the contact form!
-              </p>
-              {/* Input */}
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <Input type="firstname" placeholder="Firstname" />
-                <Input type="lastname" placeholder="Lastname" />
-              </div>
-              <Input type="email" placeholder="Email" />
-              {/* Textarea */}
-              <Textarea className="h-48" placeholder="Type your message here" />
-              {/* Button */}
-              <Button size="md" className="max-w-40" onSubmit={handleSubmit}>
-                Send Message
-              </Button>
-            </form>
+            <Form {...form}>
+              <form
+                className="flex flex-col gap-6 p-10 bg-slate-800 rounded-xl"
+                onSubmit={form.handleSubmit(onSubmit)}
+              >
+                <h3 className="text-4xl text-accent">Let's have a chat</h3>
+                <p className="text-white/80">
+                  Reach out to me through the contact form!
+                </p>
+                {/* Input */}
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <FormField
+                    control={form.control}
+                    name="firstName"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel></FormLabel>
+                        <FormControl>
+                          <Input
+                            placeholder="First name"
+                            {...field}
+                            className="w-full"
+                          />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                  <FormField
+                    control={form.control}
+                    name="lastName"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel></FormLabel>
+                        <FormControl>
+                          <Input
+                            placeholder="Last name"
+                            {...field}
+                            className="w-full"
+                          />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                </div>
+                <FormField
+                  control={form.control}
+                  name="email"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel></FormLabel>
+                      <FormControl>
+                        <Input
+                          type="email"
+                          placeholder="Email"
+                          {...field}
+                          className="w-full"
+                        />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+                {/* Textarea */}
+                <FormField
+                  control={form.control}
+                  name="message"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel></FormLabel>
+                      <FormControl>
+                        <Textarea
+                          id="message"
+                          className="h-48"
+                          placeholder="Type your message here"
+                          {...field}
+                        />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+                {/* Button */}
+                <Button size="md" className="max-w-40" type="submit">
+                  Send Message
+                </Button>
+              </form>
+            </Form>
           </div>
           {/* Info */}
           <div className="flex-1 flex items-center xl:justify-end order-1 xl:order-none mb-8 xl:mb-0">
