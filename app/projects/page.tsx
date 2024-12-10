@@ -31,7 +31,7 @@ const projects = [
       { name: "Firebase" },
     ],
     image: "/assets/poster.jpg",
-    live: "greenviewv2.web.app",
+    live: "https://greenviewv2.web.app",
     github: "https://github.com/greenviewxc/greenviewv2",
   },
   {
@@ -62,7 +62,7 @@ const projects = [
     stack: [{ name: "Java" }, { name: "Python" }],
     image: "/assets/project3.png",
     live: "https://drive.google.com/file/d/1KKaaTeLit_1FKD9gz_oQ0g7CNq5Rgjz8/view",
-    github: "https://github.com/sharkbyte79/CS411-Full-Stack",
+    github: "https://github.com/Wes1eyCh0i/Log4j-Scanner",
   },
 ];
 
