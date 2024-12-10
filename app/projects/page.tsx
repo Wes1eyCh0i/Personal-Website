@@ -22,28 +22,43 @@ const projects = [
   {
     num: "01",
     category: "FullStack Project",
+    title: "Greenview",
+    description:
+      "Webapp that helps students on campus who want to see a significant environmental impact by helping bridge the gap between their intentions and actions",
+    stack: [
+      { name: "Next.js" },
+      { name: "Framer Motion" },
+      { name: "Firebase" },
+    ],
+    image: "/assets/poster.jpg",
+    live: "greenviewv2.web.app",
+    github: "https://github.com/greenviewxc/greenviewv2",
+  },
+  {
+    num: "02",
+    category: "FullStack Project",
     title: "ACT Law Firm",
-    description: "A responsive landing page with visually appealing animations",
-    stack: [{ name: "Next.js" }, { name: "Framer Motion" }, { name: "SEO" }],
+    description: "Responsive landing page with visually appealing animations",
+    stack: [{ name: "Next.js" }, { name: "Framer Motion" }],
     image: "/assets/project1.png",
     live: "",
     github: "",
   },
   {
-    num: "02",
+    num: "03",
     category: "FullStack Project",
-    title: "Let’s Cover! Web App",
-    description: "Sportify playlists generator",
+    title: "Let’s Cover!",
+    description: "A web app that generate Spotify playlists",
     stack: [{ name: "React" }, { name: "Node.js" }, { name: "MongoDB" }],
     image: "/assets/photo.PNG",
     live: "",
     github: "https://github.com/sharkbyte79/CS411-Full-Stack",
   },
   {
-    num: "03",
+    num: "04",
     category: "Security Project",
     title: "Log4j Scanner",
-    description: "Log4Shell vulnerability scanner for web applications",
+    description: "A Log4Shell vulnerability scanner for web applications",
     stack: [{ name: "Java" }, { name: "Python" }],
     image: "/assets/project3.png",
     live: "https://drive.google.com/file/d/1KKaaTeLit_1FKD9gz_oQ0g7CNq5Rgjz8/view",
@@ -77,7 +92,7 @@ export default function Work() {
                 {project.num}
               </div>
               <h2 className="text-4xl font-bold leading-none text-white group-hover:text-accent transition-all duration-500 capitalize">
-                {project.category}
+                {project.title}
               </h2>
               <p className="text-white/80">{project.description}</p>
               <ul className="flex gap-4">
@@ -127,20 +142,20 @@ export default function Work() {
             <Swiper
               spaceBetween={30}
               slidesPerView={1}
-              className="xl:h-[32rem] mb-12"
+              className="xl:h-[30rem] mb-12"
               onSlideChange={handleSlideChange}
             >
               {projects.map((project, index) => {
                 return (
                   <SwiperSlide key={index} className="w-full">
-                    <div className="h-[28rem] relative group flex justify-center items-center bg-pink-50/20">
+                    <div className="h-[18rem] xl:h-[24rem] relative group flex justify-center items-center bg-pink-50/20">
                       {/* Overlay */}
                       <div className="absolute top-0 bottom-0 w-full h-full bg-black/10 z-10"></div>
                       <div className="relateive w-full h-full">
                         <Image
                           src={project.image}
                           fill
-                          className="object-cover"
+                          className="contain"
                           alt=""
                         />
                       </div>

@@ -61,7 +61,7 @@ export default function Home() {
               >
                 <a
                   className="flex items-center gap-2"
-                  href="/assets/Resume.pdf"
+                  href="/assets/resume.pdf"
                   download
                 >
                   <span> Download Resume </span>
