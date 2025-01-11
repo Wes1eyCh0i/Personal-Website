@@ -1,5 +1,6 @@
 "use client";
 import { formSchema } from "@/lib/schemas";
+import { useState } from "react";
 
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -42,8 +43,13 @@ export default function Contact() {
     },
   });
 
+  const [isSend, setIsSend] = useState(false);
+
   function onSubmit(values: z.infer<typeof formSchema>) {
-    send(values);
+    if (!isSend) {
+      send(values);
+      setIsSend(true);
+    }
   }
 
   return (
@@ -143,9 +149,12 @@ export default function Contact() {
                   )}
                 />
                 {/* Button */}
-                <Button size="md" className="max-w-40" type="submit">
-                  Send Message
-                </Button>
+                <div className="flex flex-col xl:flex-row xl:justify-start xl:items-center gap-6">
+                  <Button size="md" className="max-w-40" type="submit">
+                    Send Message
+                  </Button>
+                  {isSend && <p>Sent Successfully</p>}
+                </div>
               </form>
             </Form>
           </div>

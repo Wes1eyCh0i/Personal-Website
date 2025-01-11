@@ -23,16 +23,6 @@ import {
 } from "@/components/ui/tooltip";
 import { ScrollArea } from "@/components/ui/scroll-area";
 
-const about = {
-  title: "About me",
-  description: "bruh bruh bruh bruh bruh bruh bruh bruh bruh bruh bruh bruh",
-  info: [
-    { fieldName: "Name", fieldValue: "Bruh" },
-    { fieldName: "Name", fieldValue: "Bruh" },
-    { fieldName: "Name", fieldValue: "Bruh" },
-  ],
-};
-
 const experience = {
   title: "Working Experience",
   description:
@@ -58,6 +48,11 @@ const education = {
     {
       duration: "2022-2025",
       position: "Bachelor of Art in Computer Science",
+      company: "Boston Universiry",
+    },
+    {
+      duration: "2022-2025",
+      position: "Minor in Mathematics",
       company: "Boston Universiry",
     },
   ],
